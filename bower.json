@@ -1,0 +1,24 @@
+{
+  "name": "location-search",
+  "description": "Lib to add location autocomplete to a input box",
+  "version": "0.0.1",
+  "homepage": "https://github.com/firstandthird/location-search",
+  "license": "MIT",
+  "copyright": "First+Third",
+  "main": "dist/location-search.bower.js",
+  "dependencies": {
+    "jquery": "1.*",
+    "complete": "~0.6.0"
+  },
+  "devDependencies": {
+    "assert": "*"
+  },
+  "ignore": [
+    "test",
+    "example",
+    "lib",
+    "Gruntfile.js",
+    "package.json",
+    "grunt"
+  ]
+}
