@@ -1,6 +1,6 @@
 /*!
  * location-search - Lib to add location autocomplete to a input box
- * v0.0.1
+ * v0.0.2
  * https://github.com/firstandthird/location-search
  * copyright First+Third 2014
  * MIT License
@@ -519,40 +519,64 @@
 $.fn.locationSearch = function(options) {
   options = options || {};
 
-  function search(location, types, callback) {
+  var placeSearch = function(location, types, callback) {
 
     var service  = new google.maps.places.AutocompleteService(null);
 
     types = types || ['(cities)'];
-    service.getPlacePredictions({ input: location, types: types },
+    service.getPlacePredictions(
+      { input: location, types: types },
       function(predictions, status) {
-        if (status=='OK') {
-          var locations = [];
-          for (var i=0; i<5; ++i) {
-            if (predictions[i]) {
-              var p = predictions[i].description;
-              locations.push({place: p});
-             }
-           }
-           callback(locations);
-         }
+        if (status != 'OK') {
+          return;
+        }
+        var locations = [];
+        for (var i=0; i<5; ++i) {
+          if (predictions[i]) {
+            var p = predictions[i];
+            locations.push({ place: p.description });
+          }
+        }
+        callback(locations);
        }
      );
-   }
+   };
 
-   this.each(function() {
+   var geoLookup = function(place, callback) {
+     var geocoder = new google.maps.Geocoder();
+
+     geocoder.geocode( {'address': place }, function(results, status) {
+       if (status != 'OK') {
+         return callback(true);
+       }
+       var result = results[0];
+       callback(null, {
+         lat: result.geometry.location.k,
+         lng: result.geometry.location.B,
+         address: result.formatted_address
+       });
+     });
+   };
+
+   return this.each(function() {
      var el = $(this);
 
-     el.complete({
-       sourceKey: 'place',
-       query: function(query, callback) {
-         var self = this;
-         if (query !== '') {
-           search(query, options.types, function(suggestions){
-             callback.call(self, suggestions);
-           });
+     el
+       .complete({
+         sourceKey: 'place',
+         query: function(query, callback) {
+           var self = this;
+           if (query !== '') {
+             placeSearch(query, options.types, function(suggestions){
+               callback.call(self, suggestions);
+             });
+           }
          }
-       }
-    });
+       })
+       .on('complete:select', function(e, val) {
+         geoLookup(val.place, function(err, result) {
+           el.trigger('location:select', result);
+         });
+       });
   });
 };
