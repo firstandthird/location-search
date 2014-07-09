@@ -3,17 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>Location Search</title>
-    <link rel="stylesheet" href="https://rawgit.com/firstandthird/complete/master/dist/complete.css"/>
+    <link rel="stylesheet" href="../bower_components/complete/dist/complete.css"/>
   </head>
   <body>
 
     <input type="text" id="location-search"/>
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../dist/location-search.js"></script>
 
-    <script>$('#location-search').locationSearch();</script>
+    <script>
+      $('#location-search')
+        .locationSearch()
+        .on('location:select', function(e, result) {
+          console.log(result);
+        });
+
+    </script>
 
   </body>
 </html>
