@@ -15,7 +15,7 @@
 
     <script>
       $('#location-search')
-        .locationSearch({ omitString: ', United States' })
+        .locationSearch()
         .on('location:select', function(e, result) {
           console.log(result);
         });
