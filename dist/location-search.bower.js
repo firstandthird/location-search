@@ -1,6 +1,6 @@
 /*!
  * location-search - Lib to add location autocomplete to a input box
- * v0.0.2
+ * v0.0.3
  * https://github.com/firstandthird/location-search
  * copyright First+Third 2014
  * MIT License
@@ -43,7 +43,8 @@ $.fn.locationSearch = function(options) {
        callback(null, {
          lat: result.geometry.location.k,
          lng: result.geometry.location.B,
-         address: result.formatted_address
+         address: result.formatted_address,
+         addressObj: result.address_components
        });
      });
    };
