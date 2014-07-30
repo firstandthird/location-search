@@ -8,7 +8,7 @@
   "main": "dist/location-search.bower.js",
   "dependencies": {
     "jquery": "1.*",
-    "complete": "~0.6.0"
+    "complete": "~0.7.0"
   },
   "devDependencies": {
     "assert": "*"
