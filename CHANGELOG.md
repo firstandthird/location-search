@@ -1,4 +1,12 @@
 
+0.0.4 / 2014-07-30
+==================
+
+ * Updated to use newest complete and keepOpen option.
+ * Revert omit option
+ * Merge branch 'master' of github.com:firstandthird/location-search
+ * Add option to omit a string from location results
+
 0.0.3 / 2014-07-28
 ==================
 

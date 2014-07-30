@@ -1,6 +1,6 @@
 /*!
  * location-search - Lib to add location autocomplete to a input box
- * v0.0.3
+ * v0.0.4
  * https://github.com/firstandthird/location-search
  * copyright First+Third 2014
  * MIT License
@@ -222,6 +222,7 @@
       allowOthers : false,
       sourceKey : null,
       showOnClick : true,
+      keepOpen : false,
       formatSuggestion : function(suggestion, value){
         var pattern = '(' + escapeString(value) + ')';
         return this._getSuggestion(suggestion).replace(new RegExp(pattern, 'gi'), '<strong>$1<\/strong>');
@@ -361,9 +362,11 @@
       this.updatePosition();
     },
     onClickWA : function(event){
-      if ($(event.target).closest('.' + this.listClass).length === 0) {
+      if (!this.keepOpen && $(event.target).closest('.' + this.listClass).length === 0) {
         this.hide();
         $(document).off('click.complete');
+      } else {
+        this.emit('complete:outsideclick');
       }
     },
     valueChanged : function(e){
@@ -434,6 +437,7 @@
       var self = this;
 
       this.query.call(self, this.currentValue, function(suggestions){
+        self.emit('complete:query', suggestions);
         if (suggestions && $.isArray(suggestions) && suggestions.length){
           self.visible = true;
           var value = self.currentValue,
@@ -563,6 +567,7 @@ $.fn.locationSearch = function(options) {
 
      el
        .complete({
+         keepOpen: options.keepOpen || false,
          sourceKey: 'place',
          query: function(query, callback) {
            var self = this;
