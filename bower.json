@@ -1,7 +1,7 @@
 {
   "name": "location-search",
   "description": "Lib to add location autocomplete to a input box",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "homepage": "https://github.com/firstandthird/location-search",
   "license": "MIT",
   "copyright": "First+Third",
