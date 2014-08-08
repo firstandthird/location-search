@@ -1,4 +1,10 @@
 
+0.2.0 / 2014-08-08 
+==================
+
+  * Option to pass in listWidth
+  * Update to use latest complete lib
+
 0.1.0 / 2014-08-05 
 ==================
 
