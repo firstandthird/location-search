@@ -1,6 +1,6 @@
 /*!
  * location-search - Lib to add location autocomplete to a input box
- * v0.2.2
+ * v0.2.3
  * https://github.com/firstandthird/location-search
  * copyright First+Third 2014
  * MIT License
@@ -569,6 +569,7 @@ $.fn.locationSearch = function(options) {
        .complete({
          keepOpen: true,
          sourceKey: 'place',
+         zIndex: options.zIndex || 99999,
          listWidth: options.listWidth || false,
          query: function(query, callback) {
            var self = this;

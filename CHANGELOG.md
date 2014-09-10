@@ -1,4 +1,10 @@
 
+0.2.3 / 2014-09-10 
+==================
+
+  * Merge pull request #1 from firstandthird/zindex-option
+  * Allow option to pass in z-index for complete
+
 0.2.1 / 2014-08-12 
 ==================
 
