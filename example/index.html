@@ -3,24 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Location Search</title>
-    <link rel="stylesheet" href="../bower_components/complete/dist/complete.css"/>
+    <link rel="stylesheet" href="../styles.css"/>
   </head>
   <body>
 
-    <input type="text" id="location-search"/>
+    <div data-module="LocationSearch">
+      <input data-name="input" type="text" id="location-search" data-action="search" data-action-type="input" />
+      <div data-name="resultsContainer"></div>
+    </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&.js"></script>
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../dist/location-search.js"></script>
-
-    <script>
-      $('#location-search')
-        .locationSearch()
-        .on('location:select', function(e, result) {
-          console.log(result);
-        });
-
-    </script>
 
   </body>
 </html>

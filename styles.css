@@ -1,0 +1,26 @@
+[data-module="LocationSearch"] {
+  display: inline-block;
+  position: relative;
+}
+
+[data-module="LocationSearch"] [data-name="resultsContainer"] {
+  background: white;
+  position: absolute;
+  top: 20px;
+  width: 100%;
+}
+
+[data-module="LocationSearch"] [data-name="resultsContainer"] ul {
+  margin: 0;
+  padding: 0;
+}
+
+[data-module="LocationSearch"] [data-name="resultsContainer"] ul li {
+  cursor: pointer;
+  padding: 5px;
+}
+
+[data-module="LocationSearch"] [data-name="resultsContainer"] ul li:hover,
+[data-module="LocationSearch"] [data-name="resultsContainer"] ul li.selected {
+  background-color: #ccc;
+}
