@@ -62,7 +62,7 @@ class LocationSearch extends Complete {
   }
 
   locationSelected(location) {
-    console.log(location);
+    this.log(location);
   }
 }
 
