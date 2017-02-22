@@ -5,7 +5,7 @@ class LocationSearch extends Complete {
     window.initAutocomplete = () => {
       this.loaded = true;
       this.service = new window.google.maps.places.AutocompleteService();
-    }
+    };
     window.addEventListener('load', () => {
       const script = document.createElement('script');
       let url = 'https://maps.googleapis.com/maps/api/js?libraries=places&&callback=initAutocomplete';
