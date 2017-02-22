@@ -67,3 +67,4 @@ class LocationSearch extends Complete {
 }
 
 Complete.register('LocationSearch', LocationSearch);
+export default LocationSearch;
