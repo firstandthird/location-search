@@ -14,16 +14,19 @@
     "prepublish": "scriptkit build"
   },
   "devDependencies": {
-    "eslint": "^3.16.0",
-    "eslint-config-firstandthird": "^3.2.0",
-    "eslint-plugin-import": "^2.2.0",
-    "scriptkit": "0.0.22"
+    "eslint": "3.16.0",
+    "eslint-config-firstandthird": "3.2.0",
+    "eslint-plugin-import": "2.2.0",
+    "scriptkit": "0.1.0"
   },
   "dependencies": {
     "@firstandthird/complete": "1.0.0-beta.12"
   },
   "eslintConfig": {
-    "extends": "firstandthird"
+    "extends": "firstandthird",
+    "env": {
+      "browser": true
+    }
   },
   "scriptkit": {
     "files": {

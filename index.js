@@ -10,9 +10,9 @@ class LocationSearch extends Complete {
       const script = document.createElement('script');
       let url = 'https://maps.googleapis.com/maps/api/js?libraries=places&&callback=initAutocomplete';
       if (this.options.apikey) {
-        url += `&key=${this.options.apikey}`
+        url += `&key=${this.options.apikey}`;
       }
-      script.src = url
+      script.src = url;
       document.head.appendChild(script);
     });
   }
@@ -32,7 +32,7 @@ class LocationSearch extends Complete {
       strict: true,
       showClass: 'show',
       highlightClass: 'selected'
-    }
+    };
   }
 
   fetch() {
@@ -42,7 +42,7 @@ class LocationSearch extends Complete {
     if (this.term.length < this.options.minLength) {
       return;
     }
-    this.service.getPlacePredictions({ 
+    this.service.getPlacePredictions({
       input: this.term,
       types: this.options.types.split(',')
     }, (results) => {
