@@ -3,12 +3,11 @@ import Complete from '@firstandthird/complete';
 class LocationSearch extends Complete {
   preInit() {
     window.initAutocomplete = () => {
-      this.loaded = true;
-      this.service = new window.google.maps.places.AutocompleteService();
+      this.onLoad();
     };
     window.addEventListener('load', () => {
       const script = document.createElement('script');
-      let url = 'https://maps.googleapis.com/maps/api/js?libraries=places&&callback=initAutocomplete';
+      let url = 'https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete';
       if (this.options.apikey) {
         url += `&key=${this.options.apikey}`;
       }
@@ -16,6 +15,7 @@ class LocationSearch extends Complete {
       document.head.appendChild(script);
     });
   }
+
   get required() {
     return {
       options: [],
@@ -33,6 +33,11 @@ class LocationSearch extends Complete {
       showClass: 'show',
       highlightClass: 'selected'
     };
+  }
+
+  onLoad() {
+    this.loaded = true;
+    this.service = new window.google.maps.places.AutocompleteService();
   }
 
   fetch() {
