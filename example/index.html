@@ -4,10 +4,21 @@
     <meta charset="utf-8">
     <title>Location Search</title>
     <link rel="stylesheet" href="../node_modules/@firstandthird/complete/lib/complete.css"/>
+    <style>
+    .complete-google-attribution {
+      cursor: default !important;
+    }
+    .complete-google-attribution:hover {
+      background-color: inherit !important;
+    }
+    .complete-google-attribution img {
+      height: 18px;
+    }
+    </style>
   </head>
   <body>
 
-    <div data-module="LocationSearch" class="module-complete">
+    <div data-module="LocationSearch" class="module-complete" data-module-google-logo="/img/light.png">
       <input data-name="input" type="text" id="location-search" data-action="search" data-action-type="input" />
       <div data-name="resultsContainer"></div>
     </div>

@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "scriptkit",
-    "prepublish": "scriptkit build"
+    "dev": "scriptkit dev",
+    "prepublish": "scriptkit build && cp -R img dist/img"
   },
   "devDependencies": {
     "eslint": "3.19.0",
