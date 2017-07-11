@@ -31,7 +31,9 @@ class LocationSearch extends Complete {
       delay: 500,
       strict: true,
       showClass: 'show',
-      highlightClass: 'selected'
+      highlightClass: 'selected',
+      googleLogo: './img/light.png',
+      googleAttributionClass: 'complete-google-attribution'
     };
   }
 
@@ -52,11 +54,25 @@ class LocationSearch extends Complete {
       types: this.options.types.split(',')
     }, (results) => {
       this.lastResults = {};
-      const addresses = results.map((result, index) => {
-        this.lastResults[result.description] = result;
-        return result.description;
-      });
+
+      let addresses = [];
+
+      if (results) {
+        addresses = results.map((result, index) => {
+          this.lastResults[result.description] = result;
+          return result.description;
+        });
+      }
+
       this.render(addresses);
+
+      if (!this.options.googleLogo) {
+        return;
+      }
+
+      const list = this.findOne('ul');
+
+      list.insertAdjacentHTML('beforeend', `<li class="${this.options.googleAttributionClass}"><img src="${this.options.googleLogo}" alt="Powered by Google"/></li>`);
     });
   }
 
