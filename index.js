@@ -1,4 +1,9 @@
 import Complete from '@firstandthird/complete';
+import { fire } from 'domassist';
+
+const Events = {
+  Geocoded: 'location:geocoded'
+};
 
 class LocationSearch extends Complete {
   preInit() {
@@ -49,23 +54,29 @@ class LocationSearch extends Complete {
       strict: true,
       showClass: 'show',
       highlightClass: 'selected',
+      geocode: false,
       googleLogo: './img/light.png',
       googleAttributionClass: 'complete-google-attribution'
     };
   }
 
   onLoad() {
-    this.loaded = true;
     this.service = new window.google.maps.places.AutocompleteService();
+
+    if (this.options.geocode) {
+      this.geocodeService = new window.google.maps.Geocoder();
+    }
   }
 
   fetch() {
     if (!this.service) {
       return;
     }
+
     if (this.term.length < this.options.minLength) {
       return;
     }
+
     this.service.getPlacePredictions({
       input: this.term,
       types: this.options.types.split(',')
@@ -97,6 +108,29 @@ class LocationSearch extends Complete {
     super.updateValue(obj);
     const location = this.lastResults[obj.value];
     this.locationSelected(location);
+
+
+    if (this.options.geocode) {
+      this.geocodeService.geocode(
+        { address: this.selectedTerm.value },
+        this.onLocationGeocoded.bind(this));
+    }
+  }
+
+  onLocationGeocoded([result]) {
+    if (!result) {
+      return;
+    }
+
+    const detail = {
+      lat: result.geometry.location.lat(),
+      lng: result.geometry.location.lng(),
+      country: result.address_components[3].long_name,
+      state: result.address_components[2].long_name,
+      city: result.address_components[1].long_name
+    };
+
+    fire(this.el, Events.Geocoded, { bubbles: true, detail });
   }
 
   locationSelected(location) {
@@ -105,4 +139,6 @@ class LocationSearch extends Complete {
 }
 
 Complete.register('LocationSearch', LocationSearch);
+
 export default LocationSearch;
+export { Events };
