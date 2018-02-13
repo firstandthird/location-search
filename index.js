@@ -2,9 +2,26 @@ import Complete from '@firstandthird/complete';
 
 class LocationSearch extends Complete {
   preInit() {
+    let init = null;
+
+    if (typeof window.initAutocomplete !== 'undefined') {
+      init = window.initAutocomplete;
+    }
+
     window.initAutocomplete = () => {
       this.onLoad();
+
+      if (init) {
+        init();
+      }
     };
+
+    // In case there's another function already declared, means that we have
+    // more than one instance. No need to append the script twice
+    if (init) {
+      return;
+    }
+
     window.addEventListener('load', () => {
       const script = document.createElement('script');
       let url = 'https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete';
