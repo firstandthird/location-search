@@ -127,7 +127,7 @@ class LocationSearch extends Complete {
       lng: result.geometry.location.lng(),
       country: result.address_components[3].long_name,
       state: result.address_components[2].long_name,
-      city: result.address_components[1].long_name
+      city: result.address_components[0].long_name
     };
 
     fire(this.el, Events.Geocoded, { bubbles: true, detail });
