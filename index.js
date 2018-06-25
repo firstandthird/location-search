@@ -5,6 +5,12 @@ const Events = {
   Geocoded: 'location:geocoded'
 };
 
+const Matching = {
+  city: 'locality',
+  state: 'administrative_area_level_1',
+  country: 'country',
+};
+
 class LocationSearch extends Complete {
   preInit() {
     let init = null;
@@ -117,6 +123,20 @@ class LocationSearch extends Complete {
     }
   }
 
+  getField(field, results) {
+    let result = null;
+    const key = Matching[field];
+
+    const filtered = results.address_components
+      .filter(component => component.types.indexOf(key) > -1)[0];
+
+    if (filtered) {
+      result = filtered.long_name;
+    }
+
+    return result;
+  }
+
   onLocationGeocoded([result]) {
     if (!result) {
       return;
@@ -125,9 +145,9 @@ class LocationSearch extends Complete {
     const detail = {
       lat: result.geometry.location.lat(),
       lng: result.geometry.location.lng(),
-      country: result.address_components[3].long_name,
-      state: result.address_components[2].long_name,
-      city: result.address_components[0].long_name
+      country: this.getField('country', result),
+      state: this.getField('state', result),
+      city: this.getField('city', result)
     };
 
     fire(this.el, Events.Geocoded, { bubbles: true, detail });
