@@ -4,7 +4,7 @@
   "author": "First+Third",
   "main": "dist/location-search.js",
   "module": "index.js",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/firstandthird/location-search.git"
@@ -18,7 +18,7 @@
     "eslint": "3.19.0",
     "eslint-config-firstandthird": "3.2.0",
     "eslint-plugin-import": "2.2.0",
-    "scriptkit": "0.1.0"
+    "scriptkit": "0.4.0"
   },
   "dependencies": {
     "@firstandthird/complete": "^1.1.0",
