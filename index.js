@@ -60,7 +60,7 @@ class LocationSearch extends Complete {
       strict: true,
       showClass: 'show',
       highlightClass: 'selected',
-      geocode: false,
+      geocode: true,
       googleLogo: './img/light.png',
       googleAttributionClass: 'complete-google-attribution'
     };
@@ -106,7 +106,7 @@ class LocationSearch extends Complete {
 
       const list = this.findOne('ul');
 
-      list.insertAdjacentHTML('beforeend', `<li class="${this.options.googleAttributionClass}"><img src="${this.options.googleLogo}" alt="Powered by Google"/></li>`);
+      list.insertAdjacentHTML('beforeend', `<li class="${this.options.googleAttributionClass}"><img src="/${this.options.googleLogo}" alt="Powered by Google"/></li>`);
     });
   }
 
@@ -114,7 +114,6 @@ class LocationSearch extends Complete {
     super.updateValue(obj);
     const location = this.lastResults[obj.value];
     this.locationSelected(location);
-
 
     if (this.options.geocode) {
       this.geocodeService.geocode(
@@ -147,7 +146,8 @@ class LocationSearch extends Complete {
       lng: result.geometry.location.lng(),
       country: this.getField('country', result),
       state: this.getField('state', result),
-      city: this.getField('city', result)
+      city: this.getField('city', result) === null ? result.formatted_address : this.getField('city', result),
+
     };
 
     fire(this.el, Events.Geocoded, { bubbles: true, detail });
