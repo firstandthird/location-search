@@ -115,7 +115,6 @@ class LocationSearch extends Complete {
     const location = this.lastResults[obj.value];
     this.locationSelected(location);
 
-
     if (this.options.geocode) {
       this.geocodeService.geocode(
         { address: this.selectedTerm.value },
@@ -142,12 +141,14 @@ class LocationSearch extends Complete {
       return;
     }
 
+    const city = this.getField('city', result) || result.formatted_address;
+
     const detail = {
       lat: result.geometry.location.lat(),
       lng: result.geometry.location.lng(),
       country: this.getField('country', result),
       state: this.getField('state', result),
-      city: this.getField('city', result)
+      city
     };
 
     fire(this.el, Events.Geocoded, { bubbles: true, detail });
