@@ -60,7 +60,7 @@ class LocationSearch extends Complete {
       strict: true,
       showClass: 'show',
       highlightClass: 'selected',
-      geocode: true,
+      geocode: false,
       googleLogo: './img/light.png',
       googleAttributionClass: 'complete-google-attribution'
     };
