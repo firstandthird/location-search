@@ -141,15 +141,14 @@ class LocationSearch extends Complete {
       return;
     }
 
-    const city = this.getField('city', result);
+    const city = this.getField('city', result) || result.formatted_address;
 
     const detail = {
       lat: result.geometry.location.lat(),
       lng: result.geometry.location.lng(),
       country: this.getField('country', result),
       state: this.getField('state', result),
-      city: city === null ? result.formatted_address : city,
-
+      city
     };
 
     fire(this.el, Events.Geocoded, { bubbles: true, detail });
