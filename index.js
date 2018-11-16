@@ -106,7 +106,7 @@ class LocationSearch extends Complete {
 
       const list = this.findOne('ul');
 
-      list.insertAdjacentHTML('beforeend', `<li class="${this.options.googleAttributionClass}"><img src="/${this.options.googleLogo}" alt="Powered by Google"/></li>`);
+      list.insertAdjacentHTML('beforeend', `<li class="${this.options.googleAttributionClass}"><img src="${this.options.googleLogo}" alt="Powered by Google"/></li>`);
     });
   }
 
