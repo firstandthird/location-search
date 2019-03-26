@@ -9,6 +9,7 @@ const Matching = {
   city: 'locality',
   state: 'administrative_area_level_1',
   country: 'country',
+  country_iso: 'country'
 };
 
 class LocationSearch extends Complete {
@@ -122,7 +123,7 @@ class LocationSearch extends Complete {
     }
   }
 
-  getField(field, results) {
+  getField(field, results, getShortName) {
     let result = null;
     const key = Matching[field];
 
@@ -130,7 +131,7 @@ class LocationSearch extends Complete {
       .filter(component => component.types.indexOf(key) > -1)[0];
 
     if (filtered) {
-      result = filtered.long_name;
+      result = getShortName === true ? filtered.short_name : filtered.long_name;
     }
 
     return result;
@@ -147,6 +148,7 @@ class LocationSearch extends Complete {
       lat: result.geometry.location.lat(),
       lng: result.geometry.location.lng(),
       country: this.getField('country', result),
+      country_iso: this.getField('country', result, true),
       state: this.getField('state', result),
       city
     };
