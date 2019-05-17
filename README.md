@@ -6,7 +6,7 @@ Javascript lib to add location autocomplete to a input box
 ## Installation
 
 ```
-npm install location-search
+npm i location-search
 ```
 
 ## Usage
