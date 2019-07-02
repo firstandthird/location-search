@@ -1,22 +1,23 @@
-location-search
-===============
+# location-search
 
 Javascript lib to add location autocomplete to a input box
 
 ## Installation
 
-```
+```sh
 npm i location-search
 ```
 
 ## Usage
 
-### Javascript:
+### JavaScript
+
 ```js
 @import 'location-search';
 ```
 
-### Html:
+### HTML
+
 ```html
 <link rel="stylesheet" href="node_modules/@firstandthird/complete/lib/complete.css"/>
 <div data-module="LocationSearch" class="module-complete">
