@@ -3,7 +3,7 @@
   "homepage": "https://github.com/firstandthird/location-search",
   "author": "First+Third",
   "main": "index.js",
-  "module": "dist/location-search.esm.js",
+  "module": "dist/location-search.js",
   "version": "2.0.0",
   "repository": {
     "type": "git",
@@ -12,17 +12,18 @@
   "scripts": {
     "start": "scriptkit",
     "dev": "scriptkit dev",
+    "build": "scriptkit build",
     "prepublishOnly": "scriptkit build && cp -R img dist/img"
   },
   "devDependencies": {
-    "eslint": "5.16.0",
-    "eslint-config-firstandthird": "4.3.0",
-    "eslint-plugin-import": "2.17.2",
-    "scriptkit": "2.0.3"
+    "eslint": "^6.0.1",
+    "eslint-config-firstandthird": "^4.4.0",
+    "eslint-plugin-import": "^2.18.0",
+    "scriptkit": "^3.0.0"
   },
   "dependencies": {
-    "@firstandthird/complete": "^2.0.0",
-    "domassist": "^2.0.2"
+    "@firstandthird/complete": "^2.1.0",
+    "domassist": "^2.2.0"
   },
   "eslintConfig": {
     "extends": "firstandthird",
@@ -31,11 +32,14 @@
     }
   },
   "scriptkit": {
-    "files": {
-      "dist/location-search.js": "index.js"
+    "serve": {
+      "enabled": true
     },
     "test": {
       "enabled": false
+    },
+    "files": {
+      "dist/location-search.js": "index.js"
     }
   }
 }
