@@ -1,4 +1,4 @@
-# location-search
+# location-search ![npm](https://img.shields.io/npm/v/location-search.svg)
 
 Javascript lib to add location autocomplete to a input box
 
