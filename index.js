@@ -55,7 +55,7 @@ class LocationSearch extends Complete {
 
   get defaults() {
     return {
-      types: '(cities)',
+      types: '(regions)',
       minLength: 3,
       delay: 500,
       strict: true,
