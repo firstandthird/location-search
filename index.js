@@ -145,6 +145,7 @@ class LocationSearch extends Complete {
     const city = this.getField('city', result) || result.formatted_address;
 
     const detail = {
+      place_id: result.place_id,
       lat: result.geometry.location.lat(),
       lng: result.geometry.location.lng(),
       country: this.getField('country', result),
