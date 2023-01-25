@@ -86,7 +86,8 @@ class LocationSearch extends Complete {
 
     this.service.getPlacePredictions({
       input: this.term,
-      types: this.options.types.split(',')
+      types: this.options.types.split(','),
+      language: 'en'
     }, (results) => {
       this.lastResults = {};
 
