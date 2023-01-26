@@ -2,6 +2,9 @@
 
 Javascript lib to add location autocomplete to a input box
 
+## Update
+  Added `place_id` field to `Events.Geocode` 
+
 ## Installation
 
 ```sh
