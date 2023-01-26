@@ -86,7 +86,8 @@ class LocationSearch extends Complete {
 
     this.service.getPlacePredictions({
       input: this.term,
-      types: this.options.types.split(',')
+      types: this.options.types.split(','),
+      language: 'en'
     }, (results) => {
       this.lastResults = {};
 
@@ -145,6 +146,7 @@ class LocationSearch extends Complete {
     const city = this.getField('city', result) || result.formatted_address;
 
     const detail = {
+      place_id: result.place_id,
       lat: result.geometry.location.lat(),
       lng: result.geometry.location.lng(),
       country: this.getField('country', result),
