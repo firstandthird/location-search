@@ -90,24 +90,20 @@ class LocationSearch extends Complete {
       language: 'en'
     }, (results) => {
       this.lastResults = {};
-
       let addresses = [];
-
       if (results) {
-        addresses = results.map((result, index) => {
-          this.lastResults[result.description] = result;
-          return result.description;
-        });
+        addresses = results
+          .filter(result => result.terms.length > 1)
+          .map((result, index) => {
+            this.lastResults[result.description] = result;
+            return result.description;
+          });
       }
-
       this.render(addresses);
-
       if (!this.options.googleLogo) {
         return;
       }
-
       const list = this.findOne('ul');
-
       list.insertAdjacentHTML('beforeend', `<li class="${this.options.googleAttributionClass}"><img src="${this.options.googleLogo}" alt="Powered by Google"/></li>`);
     });
   }
